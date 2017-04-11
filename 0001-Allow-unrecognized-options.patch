@@ -1,0 +1,38 @@
+From 8e1d85ea522e1211051088996ed74aacc1bc3e55 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Mon, 10 Apr 2017 21:11:54 +0000
+Subject: [PATCH] Allow unrecognized options
+
+---
+ configure | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
+
+diff --git a/configure b/configure
+index 7d2d19f..b984973 100755
+--- a/configure
++++ b/configure
+@@ -43,9 +43,7 @@ do
+       envvar=`expr "x$option" : 'x\([^=]*\)='`
+       optarg=`expr "x$option" : 'x[^=]*=\(.*\)'`
+       # Reject names that are not valid shell variable names.
+-      expr "x$envvar" : ".*[^_$cr_alnum]" >/dev/null &&
+-        { echo "$as_me: error: invalid variable name: $envvar" >&2
+-      { (exit 1); exit 1; }; }
++      expr "x$envvar" : ".*[^_$cr_alnum]" >/dev/null && continue
+       #echo $envvar $optarg
+       optarg=`echo "$optarg" | sed "s/'/'\\\\\\\\''/g"`
+       eval "$envvar='$optarg'"
+@@ -57,10 +55,6 @@ do
+       echo "  Useful vars: ASPELL ASPELL_PARMS PREZIP DESTDIR"
+       exit 0
+       ;;
+-    *)
+-      echo "Error: unrecognized option $option";
+-      exit 1 
+-    ;;
+   esac
+ done
+ 
+-- 
+2.12.2
+
