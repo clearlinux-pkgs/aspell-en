@@ -5,39 +5,42 @@
 # Source0 file verified with key 0x71C636695B147849 (dict-upload@aspell.net)
 #
 Name     : aspell-en
-Version  : 2017.01.22.0
-Release  : 5
-URL      : https://mirrors.ocf.berkeley.edu/gnu/aspell/dict/en/aspell6-en-2017.01.22-0.tar.bz2
-Source0  : https://mirrors.ocf.berkeley.edu/gnu/aspell/dict/en/aspell6-en-2017.01.22-0.tar.bz2
-Source99 : https://mirrors.ocf.berkeley.edu/gnu/aspell/dict/en/aspell6-en-2017.01.22-0.tar.bz2.sig
+Version  : 2017.08.24.0
+Release  : 6
+URL      : https://mirrors.ocf.berkeley.edu/gnu/aspell/dict/en/aspell6-en-2017.08.24-0.tar.bz2
+Source0  : https://mirrors.ocf.berkeley.edu/gnu/aspell/dict/en/aspell6-en-2017.08.24-0.tar.bz2
+Source99 : https://mirrors.ocf.berkeley.edu/gnu/aspell/dict/en/aspell6-en-2017.08.24-0.tar.bz2.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause BSD-4-Clause Public-Domain
+License  : BSD-3-Clause BSD-4-Clause HPND Public-Domain
 BuildRequires : aspell
 Patch1: 0001-Allow-unrecognized-options.patch
 
 %description
 GNU Aspell 0.60 English Dictionary Package
-Version 2017.01.22-0
-2017-01-22
+Version 2017.08.24-0
+2017-08-24
 Original Word List By:
 Kevin Atkinson <kevina at gnu org>
 Wordlist URL: http://wordlist.aspell.net/
-Source Version: 2017.01.22
+Source Version: 2017.08.24
 This word list is considered both complete and accurate.
 
 %prep
-%setup -q -n aspell6-en-2017.01.22-0
+%setup -q -n aspell6-en-2017.08.24-0
 %patch1 -p1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1491933562
+export SOURCE_DATE_EPOCH=1521394777
 %configure --disable-static
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1491933562
+export SOURCE_DATE_EPOCH=1521394777
 rm -rf %{buildroot}
 %make_install
 
