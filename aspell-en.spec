@@ -6,7 +6,7 @@
 #
 Name     : aspell-en
 Version  : 2018.04.16.0
-Release  : 9
+Release  : 10
 URL      : https://mirrors.ocf.berkeley.edu/gnu/aspell/dict/en/aspell6-en-2018.04.16-0.tar.bz2
 Source0  : https://mirrors.ocf.berkeley.edu/gnu/aspell/dict/en/aspell6-en-2018.04.16-0.tar.bz2
 Source99 : https://mirrors.ocf.berkeley.edu/gnu/aspell/dict/en/aspell6-en-2018.04.16-0.tar.bz2.sig
