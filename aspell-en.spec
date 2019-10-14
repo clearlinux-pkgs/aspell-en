@@ -5,43 +5,63 @@
 # Source0 file verified with key 0x71C636695B147849 (dict-upload@aspell.net)
 #
 Name     : aspell-en
-Version  : 2018.04.16.0
-Release  : 10
-URL      : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2018.04.16-0.tar.bz2
-Source0  : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2018.04.16-0.tar.bz2
-Source99 : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2018.04.16-0.tar.bz2.sig
-Summary  : No detailed summary available
+Version  : 2019.10.06.0
+Release  : 11
+URL      : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2019.10.06-0.tar.bz2
+Source0  : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2019.10.06-0.tar.bz2
+Source1 : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2019.10.06-0.tar.bz2.sig
+Summary  : English dictionary for aspell
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause HPND Public-Domain
+Requires: aspell-en-license = %{version}-%{release}
 BuildRequires : aspell
 Patch1: 0001-Allow-unrecognized-options.patch
 
 %description
 GNU Aspell 0.60 English Dictionary Package
-Version 2018.04.16-0
-2018-04-16
+Version 2019.10.06-0
+2019-10-06
 Original Word List By:
 Kevin Atkinson <kevina at gnu org>
 Wordlist URL: http://wordlist.aspell.net/
-Source Version: 2018.04.16
+Source Version: 2019.10.06
 This word list is considered both complete and accurate.
 
+%package license
+Summary: license components for the aspell-en package.
+Group: Default
+
+%description license
+license components for the aspell-en package.
+
+
 %prep
-%setup -q -n aspell6-en-2018.04.16-0
+%setup -q -n aspell6-en-2019.10.06-0
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1524588966
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1571063640
+# -Werror is for werrorists
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1524588966
+export SOURCE_DATE_EPOCH=1571063640
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/aspell-en
+cp %{_builddir}/aspell6-en-2019.10.06-0/Copyright %{buildroot}/usr/share/package-licenses/aspell-en/1f53144f54e07f040053a2f490bfcaca6e959992
 %make_install
 
 %files
@@ -135,3 +155,7 @@ rm -rf %{buildroot}
 /usr/lib64/aspell-0.60/english-w_accents.alias
 /usr/lib64/aspell-0.60/english-wo_accents.alias
 /usr/lib64/aspell-0.60/english.alias
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/aspell-en/1f53144f54e07f040053a2f490bfcaca6e959992
