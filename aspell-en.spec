@@ -6,11 +6,11 @@
 #
 Name     : aspell-en
 Version  : 2019.10.06.0
-Release  : 11
+Release  : 12
 URL      : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2019.10.06-0.tar.bz2
 Source0  : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2019.10.06-0.tar.bz2
-Source1 : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2019.10.06-0.tar.bz2.sig
-Summary  : English dictionary for aspell
+Source1  : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2019.10.06-0.tar.bz2.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause HPND Public-Domain
 Requires: aspell-en-license = %{version}-%{release}
@@ -37,6 +37,7 @@ license components for the aspell-en package.
 
 %prep
 %setup -q -n aspell6-en-2019.10.06-0
+cd %{_builddir}/aspell6-en-2019.10.06-0
 %patch1 -p1
 
 %build
@@ -44,21 +45,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571063640
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1604881434
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1571063640
+export SOURCE_DATE_EPOCH=1604881434
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/aspell-en
 cp %{_builddir}/aspell6-en-2019.10.06-0/Copyright %{buildroot}/usr/share/package-licenses/aspell-en/1f53144f54e07f040053a2f490bfcaca6e959992
