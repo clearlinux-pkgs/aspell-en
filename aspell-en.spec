@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x71C636695B147849 (dict-upload@aspell.net)
 #
 Name     : aspell-en
-Version  : 2019.10.06.0
-Release  : 12
-URL      : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2019.10.06-0.tar.bz2
-Source0  : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2019.10.06-0.tar.bz2
-Source1  : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2019.10.06-0.tar.bz2.sig
+Version  : 2020.12.07.0
+Release  : 13
+URL      : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2020.12.07-0.tar.bz2
+Source0  : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2020.12.07-0.tar.bz2
+Source1  : https://mirrors.kernel.org/gnu/aspell/dict/en/aspell6-en-2020.12.07-0.tar.bz2.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause HPND Public-Domain
@@ -19,12 +19,12 @@ Patch1: 0001-Allow-unrecognized-options.patch
 
 %description
 GNU Aspell 0.60 English Dictionary Package
-Version 2019.10.06-0
-2019-10-06
+Version 2020.12.07-0
+2020-12-07
 Original Word List By:
 Kevin Atkinson <kevina at gnu org>
 Wordlist URL: http://wordlist.aspell.net/
-Source Version: 2019.10.06
+Source Version: 2020.12.07
 This word list is considered both complete and accurate.
 
 %package license
@@ -36,8 +36,8 @@ license components for the aspell-en package.
 
 
 %prep
-%setup -q -n aspell6-en-2019.10.06-0
-cd %{_builddir}/aspell6-en-2019.10.06-0
+%setup -q -n aspell6-en-2020.12.07-0
+cd %{_builddir}/aspell6-en-2020.12.07-0
 %patch1 -p1
 
 %build
@@ -45,7 +45,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604881434
+export SOURCE_DATE_EPOCH=1607397689
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -58,10 +58,10 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1604881434
+export SOURCE_DATE_EPOCH=1607397689
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/aspell-en
-cp %{_builddir}/aspell6-en-2019.10.06-0/Copyright %{buildroot}/usr/share/package-licenses/aspell-en/1f53144f54e07f040053a2f490bfcaca6e959992
+cp %{_builddir}/aspell6-en-2020.12.07-0/Copyright %{buildroot}/usr/share/package-licenses/aspell-en/26bebd06268ce5071af116624daf2a4df0ff6c0b
 %make_install
 
 %files
@@ -158,4 +158,4 @@ cp %{_builddir}/aspell6-en-2019.10.06-0/Copyright %{buildroot}/usr/share/package
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/aspell-en/1f53144f54e07f040053a2f490bfcaca6e959992
+/usr/share/package-licenses/aspell-en/26bebd06268ce5071af116624daf2a4df0ff6c0b
